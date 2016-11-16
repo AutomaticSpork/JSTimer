@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var currentTime = new Date();
     var timeRemaining = getSecondsLeft();
     var currentPerson = getCurrentPerson();
-    if (timeRemaining === 0) {
+    if (timeRemaining <= 1) {
         var alertText = 'Switch! ' + currentPerson + "'s turn";
         alert(alertText);
         if (Notification.permission !== 'granted')
@@ -47,6 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
       + formatString(255 - gNum, 16)
       + formatString(gNum, 16)
       + '00';
-  }, 1000);
+  }, 500);
 });
 
