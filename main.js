@@ -1,4 +1,3 @@
-var switched = false;
 var minutes = 10;
 
 var people = [ 'Aaron', 'Jaren' ];
@@ -9,29 +8,33 @@ function getCurrentPerson() {
   return date.getDate() % 2 == 0 ? people[1 - minuteType] : people[minuteType];
 }
 
+function getSecondsLeft() {
+  var date = new Date();
+  return (minutes - date.getMinutes() % minutes)*60 - date.getSeconds();
+}
+
+var formatString = (num, base) => ('00' + num.toString(base)).substr(-2);
+
 document.body.onload = function() {
-  switched = true;
+  setInterval(() => {
+    var currentTime = new Date();
+    var timeRemaining = getSecondsLeft();
+    var currentPerson = getCurrentPerson();
+    if (timeRemaining === 0) {
+        alert('Switch! ' + currentPerson + "'s turn");
+        return;
+    }
+    var text = document.getElementById('text');
+    text.innerHTML = currentPerson
+      + "'s turn<br />"
+      + Math.floor(timeRemaining/60)
+      + ':'
+      + formatString(timeRemaining % 60, 10);
+    var gNum = Math.floor(255 * (timeRemaining/(minutes*60)));
+    text.style.color = '#'
+      + formatString(255 - gNum, 16)
+      + formatString(gNum, 16)
+      + '00';
+  }, 1000)
 };
 
-setInterval(() => {
-  var currentTime = new Date();
-  if (currentTime.getMinutes() % minutes === 0) {
-    if (!switched)
-      alert('Switch! ' + getCurrentPerson() + "'s turn");
-    switched = true;
-  } else {
-    switched = false;
-  }
-  var text = document.getElementById('text');
-  text.innerHTML = getCurrentPerson() 
-    + "'s turn<br />"
-    +  (currentTime.getSeconds() === 0 ? (((minutes - currentTime.getMinutes() % minutes)) + ':00') : ((minutes - currentTime.getMinutes() % minutes) - 1)
-    + ':' 
-    + ( (currentTime.getSeconds() > 50 ? '0' : '') + (60 - currentTime.getSeconds()))) + ' left';
-  var formatString = (num) => ('00' + num.toString(16)).substr(-2);
-  var rNum = 50;
-  text.style.color = '#'
-    + formatString(rNum)
-    + formatString(255-rNum)
-    + '00';
-}, 1000)
