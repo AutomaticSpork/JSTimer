@@ -15,13 +15,25 @@ function getSecondsLeft() {
 
 var formatString = (num, base) => ('00' + num.toString(base)).substr(-2);
 
-document.body.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
+  if (!Notification) {
+    alert('Notifications not supported... (stop using IE)');
+    return;
+  }
+
+  if (Notification.permission !== 'granted')
+    Notification.requestPermission();
+
   setInterval(() => {
     var currentTime = new Date();
     var timeRemaining = getSecondsLeft();
     var currentPerson = getCurrentPerson();
     if (timeRemaining === 0) {
-        alert('Switch! ' + currentPerson + "'s turn");
+        var alertText = 'Switch! ' + currentPerson + "'s turn";
+        alert(alertText);
+        if (Notification.permission !== 'granted')
+          Notification.requestPermission();
+        var notification = new Notification(alertText);
         return;
     }
     var text = document.getElementById('text');
@@ -35,6 +47,6 @@ document.body.onload = function() {
       + formatString(255 - gNum, 16)
       + formatString(gNum, 16)
       + '00';
-  }, 1000)
-};
+  }, 1000);
+});
 
