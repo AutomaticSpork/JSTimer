@@ -31,8 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (timeRemaining <= 1) {
         var alertText = 'Switch! ' + currentPerson + "'s turn";
         alert(alertText);
-        if (Notification.permission !== 'granted')
-          Notification.requestPermission();
         var notification = new Notification(alertText);
         return;
     }
