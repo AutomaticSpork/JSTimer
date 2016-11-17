@@ -1,4 +1,4 @@
-var minutes = 10;
+var minutes = 1;
 
 var people = [ 'Aaron', 'Jaren' ];
 
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var currentTime = new Date();
     var timeRemaining = getSecondsLeft();
     var currentPerson = people[getCurrentPerson()];
-    if (timeRemaining === 0) {
+    if (timeRemaining <= 1) {
         alertText = 'Switch! ' + people[getCurrentPerson() === 0 ? 1 : 0] + "'s turn";
         var notification = new Notification(alertText);
         setTimeout(() => {
