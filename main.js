@@ -1,5 +1,5 @@
 //Flip Clock
-var clock = $('.clock').FlipClock(0, {
+var clock = new FlipClock($('.clock'), {
     clockFace: 'MinuteCounter',
     countdown: true
 });
