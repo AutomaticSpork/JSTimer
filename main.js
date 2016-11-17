@@ -14,7 +14,7 @@ function getSecondsLeft() {
 }
 
 var formatString = (num, base) => ('00' + num.toString(base)).substr(-2);
-
+var alertText;
 document.addEventListener('DOMContentLoaded', function() {
   if (!Notification) {
     alert('Notifications not supported... (stop using IE)');
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var timeRemaining = getSecondsLeft();
     var currentPerson = people[getCurrentPerson()];
     if (timeRemaining === 0) {
-        var alertText = 'Switch! ' + people[getCurrentPerson() === 0 ? 1 : 0] + "'s turn";
+        alertText = 'Switch! ' + people[getCurrentPerson() === 0 ? 1 : 0] + "'s turn";
         var notification = new Notification(alertText);
         setTimeout(() => {
           alert(alertText);
