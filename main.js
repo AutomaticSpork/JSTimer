@@ -28,10 +28,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var currentTime = new Date();
     var timeRemaining = getSecondsLeft();
     var currentPerson = getCurrentPerson();
-    if (timeRemaining <= 1) {
+    if (timeRemaining === 0) {
         var alertText = 'Switch! ' + currentPerson + "'s turn";
-        alert(alertText);
         var notification = new Notification(alertText);
+        alert(alertText);
         return;
     }
     var text = document.getElementById('text');
