@@ -5,7 +5,7 @@ var people = [ 'Aaron', 'Jaren' ];
 function getCurrentPerson() {
   var date = new Date();
   var minuteType = Math.floor(date.getMinutes() / minutes) % 2;
-  return date.getDate() % 2 == 0 ? people[1 - minuteType] : people[minuteType];
+  return date.getDate() % 2 == 0 ? (1 - minuteType) : minuteType;
 }
 
 function getSecondsLeft() {
@@ -27,11 +27,13 @@ document.addEventListener('DOMContentLoaded', function() {
   setInterval(() => {
     var currentTime = new Date();
     var timeRemaining = getSecondsLeft();
-    var currentPerson = getCurrentPerson();
+    var currentPerson = people[getCurrentPerson()];
     if (timeRemaining === 0) {
-        var alertText = 'Switch! ' + currentPerson + "'s turn";
+        var alertText = 'Switch! ' + people[getCurrentPerson() === 0 ? 1 : 0] + "'s turn";
         var notification = new Notification(alertText);
-        alert(alertText);
+        setTimeout(() => {
+          alert(alertText);
+        }, 10);
         return;
     }
     var text = document.getElementById('text');
