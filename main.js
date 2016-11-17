@@ -1,3 +1,10 @@
+//Flip Clock
+var clock = $('.your-clock').FlipClock(getSecondsLeft(), {
+  clockFace: 'MinuteCounter',
+  countdown: true
+}).start();
+
+
 var minutes = 1;
 
 var people = [ 'Aaron', 'Jaren' ];
@@ -36,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
           var notification = new Notification(alertText);
           setTimeout(() => {
             alert(alertText);
+            clock.setFaceValue(getSecondsLeft()).start();
           }, 10);
         }, 750);
         return;
