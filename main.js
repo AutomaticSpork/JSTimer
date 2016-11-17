@@ -5,7 +5,7 @@ var clock = $('.your-clock').FlipClock(getSecondsLeft(), {
 }).start();
 
 
-var minutes = 1;
+var minutes = 10;
 
 var people = [ 'Aaron', 'Jaren' ];
 
