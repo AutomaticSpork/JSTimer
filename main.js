@@ -15,6 +15,7 @@ function getSecondsLeft() {
 
 var formatString = (num, base) => ('00' + num.toString(base)).substr(-2);
 var alertText;
+var switched = false;
 document.addEventListener('DOMContentLoaded', function() {
   if (!Notification) {
     alert('Notifications not supported... (stop using IE)');
@@ -28,7 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var currentTime = new Date();
     var timeRemaining = getSecondsLeft();
     var currentPerson = people[getCurrentPerson()];
-    if (timeRemaining === 1) {
+    if (timeRemaining === 1 && !switched) {
+        switched = true;
         setTimeout(() => { 
           alertText = 'Switch! ' + people[getCurrentPerson() === 0 ? 1 : 0] + "'s turn";
           var notification = new Notification(alertText);
@@ -37,6 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
           }, 10);
         }, 750);
         return;
+    } else { 
+      switched = false;
     }
     var text = document.getElementById('text');
     text.innerHTML = currentPerson
