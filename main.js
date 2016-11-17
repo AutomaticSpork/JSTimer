@@ -1,9 +1,10 @@
 //Flip Clock
-var clock = $('.your-clock').FlipClock(getSecondsLeft(), {
-  clockFace: 'MinuteCounter',
-  countdown: true
-}).start();
+var clock = $('.clock').FlipClock(0, {
+    clockFace: 'MinuteCounter',
+    countdown: true
+});
 
+clock.setFaceValue(getSecondsLeft()).start();
 
 var minutes = 10;
 
