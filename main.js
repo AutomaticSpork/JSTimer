@@ -2,7 +2,7 @@ var minutes = 10;
 
 var people = [ 'Aaron', 'Jaren' ];
 
-var bar = new ProgressBar.Circle(container, {
+var bar = new ProgressBar.Circle('#container', {
   strokeWidth: 6,
   easing: 'easeInOut',
   duration: 1400,
