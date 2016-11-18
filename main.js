@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     var text = document.getElementById('text');
     bar.setText(Math.floor(timeRemaining/60) + ':' + formatString(timeRemaining % 60, 10));
+    bar.animate(timeRemaining/(minutes * 60));
     text.innerHTML = currentPerson + "'s turn<br />";
   }, 500);
 });
