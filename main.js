@@ -31,14 +31,16 @@ document.addEventListener('DOMContentLoaded', function() {
     to: {color: '#e74c3c'},
     text: {
       autoStyleContainer: false,
-      value: '0:00'
     },
     step: (state, bar) => {
       bar.path.setAttribute('stroke', state.color);
-      bar.text.style.color = state.color;
+      if(bar && bar.text) {
+        bar.text.style.color = state.color;
+      }
     },
   });
   
+  bar.setText('Loading');
   bar.text.style.fontFamily = 'Helvetica, sans-serif';
   bar.text.style.fontSize = '100px';
   
