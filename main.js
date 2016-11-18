@@ -2,20 +2,26 @@ var minutes = 10;
 
 var people = [ 'Aaron', 'Jaren' ];
 
-var bar = new ProgressBar.Circle('#container', {
+var bar = new ProgressBar.Circle('div#container', {
   strokeWidth: 6,
   easing: 'easeInOut',
   duration: 1400,
   color: '#3498db',
   trailColor: '#eee',
-  trailWidth: 1,
+  trailWidth: 6,
   svgStyle: null,
   from: {color: '#3498db'},
   to: {color: '#e74c3c'},
   step: (state, bar) => {
     bar.path.setAttribute('stroke', state.color);
-  }
+  },
+  text: {
+    autoStyleContainer: false
+  },
 });
+
+bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+bar.text.style.fontSize = '2rem';
 
 function getCurrentPerson() {
   var date = new Date();
@@ -58,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
       switched = false;
     }
     var text = document.getElementById('text');
+    bar.setText(Math.floor(timeRemaining/60) + ':' + formatString(timeRemaining % 60, 10););
     text.innerHTML = currentPerson
       + "'s turn<br />"
       + Math.floor(timeRemaining/60)
