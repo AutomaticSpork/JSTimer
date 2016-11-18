@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
   });
   
-  bar.set(timeRemaining/(minutes * 60));
+  bar.set(getSecondsLeft()/(minutes * 60));
   bar.setText('Loading');
   bar.text.style.fontFamily = 'Helvetica, sans-serif';
   bar.text.style.fontSize = '100px';
