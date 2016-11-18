@@ -23,12 +23,12 @@ document.addEventListener('DOMContentLoaded', function() {
     strokeWidth: 6,
     easing: 'easeInOut',
     duration: 1400,
-    color: '#3498db',
+    color: '#e74c3c',
     trailColor: '#eee',
     trailWidth: 6,
     svgStyle: null,
-    from: {color: '#3498db'},
-    to: {color: '#e74c3c'},
+    from: {color: '#e74c3c'},
+    to: {color: '#3498db'},
     text: {
       autoStyleContainer: false,
     },
@@ -36,10 +36,13 @@ document.addEventListener('DOMContentLoaded', function() {
       bar.path.setAttribute('stroke', state.color);
       if(bar && bar.text) {
         bar.text.style.color = state.color;
+        var text = document.getElementById('text');
+        text.style.color = state.color;
       }
     },
   });
   
+  bar.set(timeRemaining/(minutes * 60));
   bar.setText('Loading');
   bar.text.style.fontFamily = 'Helvetica, sans-serif';
   bar.text.style.fontSize = '100px';
@@ -71,17 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     var text = document.getElementById('text');
     bar.setText(Math.floor(timeRemaining/60) + ':' + formatString(timeRemaining % 60, 10));
-    text.innerHTML = currentPerson
-      + "'s turn<br />"
-      + Math.floor(timeRemaining/60)
-      + ':'
-      + formatString(timeRemaining % 60, 10);
-    var gNum = Math.floor(255 * (timeRemaining/(minutes*60)));
-    bar.animate(timeRemaining/(minutes * 60));
-    text.style.color = '#'
-      + formatString(255 - gNum, 16)
-      + formatString(gNum, 16)
-      + '00';
+    text.innerHTML = currentPerson + "'s turn<br />";
   }, 500);
 });
 
