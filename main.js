@@ -2,6 +2,21 @@ var minutes = 10;
 
 var people = [ 'Aaron', 'Jaren' ];
 
+var bar = new ProgressBar.Circle(container, {
+  strokeWidth: 6,
+  easing: 'easeInOut',
+  duration: 1400,
+  color: '#3498db',
+  trailColor: '#eee',
+  trailWidth: 1,
+  svgStyle: null,
+  from: {color: '#3498db'},
+  to: {color: '#e74c3c'},
+  step: (state, bar) => {
+    bar.path.setAttribute('stroke', state.color);
+  }
+});
+
 function getCurrentPerson() {
   var date = new Date();
   var minuteType = Math.floor(date.getMinutes() / minutes) % 2;
@@ -32,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (timeRemaining === 1 && !switched) {
         switched = true;
         setTimeout(() => { 
-          alertText = 'Switch! ' + people[getCurrentPerson() === 0 ? 1 : 0] + "'s turn";
+          alertText = 'Switch! ' + people[getCurrentPerson()] + "'s turn";
           var notification = new Notification(alertText);
           setTimeout(() => {
             alert(alertText);
@@ -49,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
       + ':'
       + formatString(timeRemaining % 60, 10);
     var gNum = Math.floor(255 * (timeRemaining/(minutes*60)));
+    bar.animate(timeRemaining/(minutes * 60));
     text.style.color = '#'
       + formatString(255 - gNum, 16)
       + formatString(gNum, 16)
