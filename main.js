@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
   bar.set(getSecondsLeft()/(minutes * 60));
   bar.setText('Loading');
   bar.text.style.fontFamily = 'Helvetica, sans-serif';
+  document.getElementById('text').style.fontFamily = 'Helvetica, sans-serif';
   bar.text.style.fontSize = '100px';
   
   if (!Notification) {
@@ -64,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => { 
           alertText = 'Switch! ' + people[getCurrentPerson()] + "'s turn";
           var notification = new Notification(alertText);
+          bar.set(1.0);
           setTimeout(() => {
             alert(alertText);
           }, 10);
