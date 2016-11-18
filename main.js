@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
       switched = false;
     }
     var text = document.getElementById('text');
-    bar.setText(Math.floor(timeRemaining/60) + ':' + formatString(timeRemaining % 60, 10););
+    bar.setText(Math.floor(timeRemaining/60) + ':' + formatString(timeRemaining % 60, 10));
     text.innerHTML = currentPerson
       + "'s turn<br />"
       + Math.floor(timeRemaining/60)
