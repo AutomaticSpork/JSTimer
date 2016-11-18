@@ -2,26 +2,7 @@ var minutes = 10;
 
 var people = [ 'Aaron', 'Jaren' ];
 
-var bar = new ProgressBar.Circle('div#container', {
-  strokeWidth: 6,
-  easing: 'easeInOut',
-  duration: 1400,
-  color: '#3498db',
-  trailColor: '#eee',
-  trailWidth: 6,
-  svgStyle: null,
-  from: {color: '#3498db'},
-  to: {color: '#e74c3c'},
-  step: (state, bar) => {
-    bar.path.setAttribute('stroke', state.color);
-  },
-  text: {
-    autoStyleContainer: false
-  },
-});
-
-bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-bar.text.style.fontSize = '2rem';
+var bar;
 
 function getCurrentPerson() {
   var date = new Date();
@@ -38,6 +19,29 @@ var formatString = (num, base) => ('00' + num.toString(base)).substr(-2);
 var alertText;
 var switched = false;
 document.addEventListener('DOMContentLoaded', function() {
+  bar = new ProgressBar.Circle('div#container', {
+    strokeWidth: 6,
+    easing: 'easeInOut',
+    duration: 1400,
+    color: '#3498db',
+    trailColor: '#eee',
+    trailWidth: 6,
+    svgStyle: null,
+    from: {color: '#3498db'},
+    to: {color: '#e74c3c'},
+    step: (state, bar) => {
+      bar.path.setAttribute('stroke', state.color);
+      bar.text.style.color = state.color;
+    },
+    text: {
+      autoStyleContainer: false,
+      value: '0:00'
+    },
+  });
+  
+  bar.text.style.fontFamily = 'Helvetica, sans-serif';
+  bar.text.style.fontSize = '100px';
+  
   if (!Notification) {
     alert('Notifications not supported... (stop using IE)');
     return;
