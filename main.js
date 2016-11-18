@@ -29,13 +29,13 @@ document.addEventListener('DOMContentLoaded', function() {
     svgStyle: null,
     from: {color: '#3498db'},
     to: {color: '#e74c3c'},
-    step: (state, bar) => {
-      bar.path.setAttribute('stroke', state.color);
-      bar.text.style.color = state.color;
-    },
     text: {
       autoStyleContainer: false,
       value: '0:00'
+    },
+    step: (state, bar) => {
+      bar.path.setAttribute('stroke', state.color);
+      bar.text.style.color = state.color;
     },
   });
   
