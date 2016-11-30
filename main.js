@@ -15,7 +15,14 @@ function getSecondsLeft() {
   return (minutes - date.getMinutes() % minutes)*60 - date.getSeconds();
 }
 
-FavIconX.config({});
+FavIconX.config({
+  borderColor: '#FC7B08',
+  fillColor: '#FC7B08',
+  borderWidth: 1,
+  titleRenderer: function (v) {
+    return (v/100 * (minutes * 60)) + ' seconds left';
+  }
+});
 
 var formatString = (num, base) => ('00' + num.toString(base)).substr(-2);
 var alertText;
