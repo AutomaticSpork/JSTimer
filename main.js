@@ -11,7 +11,7 @@ var getCurrentPerson = () => {
 }
 var getSecondsLeft = () => (minutes - (new Date()).getMinutes() % minutes)*60 - (new Date()).getSeconds();
 var formatString = (num, base) => ('00' + num.toString(base)).substr(-2);
-var formatMS = (timeLeft) => Math.floor(timeLeft/60) + ':' + formatString(timeLeft % 60, 10);
+var formatMS = (timeLeft) => Math.floor(timeLeft/60) + ':' + formatString(Math.floor(timeLeft % 60), 10);
 
 FavIconX.config({
   borderColor: '#FC7B08',
