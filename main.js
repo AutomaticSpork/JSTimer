@@ -15,7 +15,11 @@ function getSecondsLeft() {
   return (minutes - date.getMinutes() % minutes)*60 - date.getSeconds();
 }
 
-FavIconX.config({});
+FavIconX.config({
+  borderColor: '#009900',
+  borderWidth: 2,
+  fillColor: '#009900'
+});
 
 var formatString = (num, base) => ('00' + num.toString(base)).substr(-2);
 var alertText;
