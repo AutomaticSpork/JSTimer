@@ -1,32 +1,25 @@
 var minutes = 10;
-
 var people = [ 'Aaron', 'Jaren' ];
-
 var bar;
+var alertText;
+var switched = false;
 
-var formatString = (num, base) => ('00' + num.toString(base)).substr(-2);
-var formatMS = (timeLeft) => Math.floor(timeLeft/60) + ':' + formatString(timeLeft % 60, 10);
-
-function getCurrentPerson() {
+var getCurrentPerson = () => {
   var date = new Date();
   var minuteType = Math.floor(date.getMinutes() / minutes) % 2;
   return date.getDate() % 2 == 0 ? (1 - minuteType) : minuteType;
 }
-
-function getSecondsLeft() {
-  var date = new Date();
-  return (minutes - date.getMinutes() % minutes)*60 - date.getSeconds();
-}
+var getSecondsLeft = () => (minutes - (new Date()).getMinutes() % minutes)*60 - (new Date()).getSeconds();
+var formatString = (num, base) => ('00' + num.toString(base)).substr(-2);
+var formatMS = (timeLeft) => Math.floor(timeLeft/60) + ':' + formatString(timeLeft % 60, 10);
 
 FavIconX.config({
   borderColor: '#FC7B08',
   fillColor: '#FC7B08',
   borderWidth: 1,
-  titleRenderer: (v) => formatMS(v/100 * (minutes * 60))
+  titleRenderer: (v) => formatMS(v / 100 * (minutes * 60))
 });
 
-var alertText;
-var switched = false;
 document.addEventListener('DOMContentLoaded', function() {
   bar = new ProgressBar.Circle('div#container', {
     strokeWidth: 6,
