@@ -15,6 +15,8 @@ function getSecondsLeft() {
   return (minutes - date.getMinutes() % minutes)*60 - date.getSeconds();
 }
 
+FavIconX.config({});
+
 var formatString = (num, base) => ('00' + num.toString(base)).substr(-2);
 var alertText;
 var switched = false;
@@ -41,13 +43,13 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     },
   });
-  
+
   bar.set(getSecondsLeft()/(minutes * 60));
   bar.setText('Loading');
   bar.text.style.fontFamily = 'Helvetica, sans-serif';
   document.getElementById('text').style.fontFamily = 'Helvetica, sans-serif';
   bar.text.style.fontSize = '100px';
-  
+
   if (!Notification) {
     alert('Notifications not supported... (stop using IE)');
     return;
@@ -62,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var currentPerson = people[getCurrentPerson()];
     if (timeRemaining === 1 && !switched) {
         switched = true;
-        setTimeout(() => { 
+        setTimeout(() => {
           alertText = 'Switch! ' + people[getCurrentPerson()] + "'s turn";
           var notification = new Notification(alertText);
           bar.set(1.0);
@@ -71,12 +73,13 @@ document.addEventListener('DOMContentLoaded', function() {
           }, 10);
         }, 750);
         return;
-    } else { 
+    } else {
       switched = false;
     }
     var text = document.getElementById('text');
     bar.setText(Math.floor(timeRemaining/60) + ':' + formatString(timeRemaining % 60, 10));
     bar.set(timeRemaining/(minutes * 60));
+    FavIconX.setValue(Math.floor(100*timeRemaining/(minutes * 60)));
     text.innerHTML = currentPerson + "'s turn<br />";
   }, 500);
 });
