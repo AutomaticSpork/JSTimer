@@ -20,7 +20,7 @@ FavIconX.config({
   fillColor: '#FC7B08',
   borderWidth: 1,
   titleRenderer: function (v) {
-    return (v/100 * (minutes * 60)) + ' seconds left';
+    return Math.floor(v/100 * (minutes * 60)) + ' seconds left';
   }
 });
 
