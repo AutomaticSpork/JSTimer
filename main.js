@@ -4,6 +4,9 @@ var people = [ 'Aaron', 'Jaren' ];
 
 var bar;
 
+var formatString = (num, base) => ('00' + num.toString(base)).substr(-2);
+var formatMS = (timeLeft) => Math.floor(timeLeft/60) + ':' + formatString(timeLeft % 60, 10);
+
 function getCurrentPerson() {
   var date = new Date();
   var minuteType = Math.floor(date.getMinutes() / minutes) % 2;
@@ -19,12 +22,9 @@ FavIconX.config({
   borderColor: '#FC7B08',
   fillColor: '#FC7B08',
   borderWidth: 1,
-  titleRenderer: function (v) {
-    return Math.floor(v/100 * (minutes * 60)) + ' seconds left';
-  }
+  titleRenderer: (v) => formatMS(v/100 * (minutes * 60))
 });
 
-var formatString = (num, base) => ('00' + num.toString(base)).substr(-2);
 var alertText;
 var switched = false;
 document.addEventListener('DOMContentLoaded', function() {
@@ -84,9 +84,9 @@ document.addEventListener('DOMContentLoaded', function() {
       switched = false;
     }
     var text = document.getElementById('text');
-    bar.setText(Math.floor(timeRemaining/60) + ':' + formatString(timeRemaining % 60, 10));
+    bar.setText(formatMS(timeRemaining));
     bar.set(timeRemaining/(minutes * 60));
-    FavIconX.setValue(Math.floor(100*timeRemaining/(minutes * 60)));
+    FavIconX.setValue(100*timeRemaining/(minutes * 60));
     text.innerHTML = currentPerson + "'s turn<br />";
   }, 500);
 });
