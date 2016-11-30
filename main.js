@@ -16,9 +16,9 @@ function getSecondsLeft() {
 }
 
 FavIconX.config({
-  borderColor: '#009900',
-  borderWidth: 2,
-  fillColor: '#009900'
+  borderColor: '#4285f4',
+  borderWidth: 1,
+  fillColor: '#4285f4'
 });
 
 var formatString = (num, base) => ('00' + num.toString(base)).substr(-2);
