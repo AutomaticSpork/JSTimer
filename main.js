@@ -1,5 +1,5 @@
-var minutes = 10;
-var people = [ 'Aaron', 'Jaren' ];
+var minutes;
+var people;
 var bar;
 var alertText;
 var switched = false;
@@ -21,6 +21,12 @@ FavIconX.config({
 });
 
 document.addEventListener('DOMContentLoaded', function() {
+  var query = document.location.search.slice(1).split('&').reduce((initial, item) => {
+    initial[item.split('=')[0]] = item.split('=')[1];
+    return initial;
+  }, {});
+  people = query.people.split(',');
+  minutes = query.minutes;
   bar = new ProgressBar.Circle('div#container', {
     strokeWidth: 6,
     easing: 'easeInOut',
