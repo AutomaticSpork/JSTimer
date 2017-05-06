@@ -5,7 +5,7 @@ Originally made for keeping sanity through history class to determine who should
 Every specified amount of minutes you will receive an alert box and a desktop notification (if allowed) informing you it is time to switch with the specified person.
 
 ## Parameters
-__Base URL:__ https://fiftytwo.github.io/JSTimer/
+__Base URL:__ https://automaticspork.github.io/JSTimer/
 
 Name   | Type   | Example                | Requirement
 -------|--------|------------------------|-----------
@@ -13,4 +13,4 @@ people | string |`people=Person1,Person2`| Required
 minutes| number |`minutes=10`            | Required
 
 ## Example
-https://fiftytwo.github.io/JSTimer/?people=Person1,Person2&minutes=10
+https://automaticspork.github.io/JSTimer/?people=Person1,Person2&minutes=10
